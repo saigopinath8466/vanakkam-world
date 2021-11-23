@@ -2,11 +2,11 @@ pipeline{
     agent any
     
     //agent{
-        label 'any'
-    }
+     //   label 'any'
+  //  }
     //tools{
-        maven 'maven123'
-    }
+   //     maven 'maven123'
+  //  }
     stages(
         stage('checkout'){
             steps{
