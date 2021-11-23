@@ -1,5 +1,12 @@
 pipeline{
+
+
+
     agent any
+
+
+
+
     stages{
         stage('checkout'){
             steps{
@@ -37,5 +44,6 @@ pipeline{
                     echo  "deployed to prod"
                 }
         }
-    }
+     }
+    
 }
