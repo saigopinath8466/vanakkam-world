@@ -1,0 +1,15 @@
+pipeline{
+    agent none
+    stages{
+        stage(checkout){
+            steps{
+                git 'https://github.com/saigopinath8466/vanakkam-world'
+            }
+        }
+        stage(build){
+            steps{
+                sh "mvn clean install"
+            }
+        }
+    }
+}
