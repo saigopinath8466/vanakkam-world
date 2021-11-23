@@ -9,21 +9,31 @@ pipeline{
         }
         stage('build'){
             steps{
-                sh "maven clean install"
+                sh "mvn clean install -DskipTests"
             }
-        }stage('test'){
+        }
+        stage ('test'){
+            steps{
+                sh "mvn test"
+                junit allowEmptyResults: true, testResults: 'target/surefire-reports/*.xml'
+            }
+        }
+        stage('test'){
             steps{
             echo "testing passed"
             }
-        }stage('postbuild tasks'){
+        }
+        stage('postbuild tasks'){
             steps{
                 echo "sended email"
             }
-            stage('approval'){
-                steps{
-                    input 'waiting for your approval'
-                }
-            }stage('deployment stage'){
+        }
+        stage('approval'){
+            steps{
+                input 'waiting for your approval'
+             }
+        }
+        stage('deployment stage'){
                 steps{
                     echo  "deployed to prod"
                 }
