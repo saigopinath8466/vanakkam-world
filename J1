@@ -2,37 +2,7 @@ pipeline{
     agent any
     stages{
         stage{
-            steps{
-                checkout scm
-            }
+            checkout scm
         }
-        stage(build){
-            steps{
-                sh "mvn clean install"
-            }
-        }
-        stage(test){
-            steps{
-                sh "mvn test"
-                junit allowEmptyResults: true, testResults: 'target/surefire-reports/*.xml'
-
-            }
-        }
-        stage(mail){
-            steps{
-                echo "emailing"
-            }
-        }
-        stage(approval){
-            steps{
-                input 'waiting for approval'
-            }
-        }
-        stage(deployment){
-            steps{
-                echo "deployment done"
-            }
-        }
-    
     }
 }
