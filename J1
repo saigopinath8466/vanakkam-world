@@ -1,62 +1,38 @@
 pipeline{
-
-
-
     agent any
-
-
-
-
     stages{
-
-
-
-
-
-
-        stage('checkout'){
+        stage{
             steps{
-                git 'https://github.com/saigopinath8466'
+                checkout scm
             }
         }
-
-
-        stage('build'){
+        stage(build){
             steps{
-                sh "mvn clean install -DskipTests"
+                sh "mvn clean install"
             }
         }
-
-
-        stage ('test'){
+        stage(test){
             steps{
                 sh "mvn test"
                 junit allowEmptyResults: true, testResults: 'target/surefire-reports/*.xml'
+
             }
         }
-
-
-        stage('test'){
+        stage(mail){
             steps{
-            echo "testing passed"
+                echo "emailing"
             }
         }
-
-
-        stage('postbuild tasks'){
+        stage(approval){
             steps{
-                echo "sended email"
+                input 'waiting for approval'
             }
         }
-
-
-        stage('approval'){
+        stage(deployment){
             steps{
-                input 'waiting for your approval'
-             }
+                echo "deployment done"
+            }
         }
-
-
-     }
     
+    }
 }
