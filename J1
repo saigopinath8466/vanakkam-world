@@ -1,0 +1,39 @@
+pipeline{
+    agent any
+    
+    //agent{
+        label 'any'
+    }
+    //tools{
+        maven 'maven123'
+    }
+    stages(
+        stage('checkout'){
+            steps{
+                git 'https://github.com/saigopinath8466'
+            }
+        }
+        stage('build'){
+            steps{
+                sh "maven clean install"
+            }
+        }stage('test'){
+            steps{
+            echo "testing passed"
+            }
+        }stage('postbuild tasks'){
+            steps{
+                echo "sended email"
+            }
+            stage('approval'){
+                steps{
+                    input 'waiting for your approval'
+                }
+            }stage('deployment stage'){
+                steps{
+                    echo  "deployed to prod"
+                }
+            }
+        }
+    )
+}
