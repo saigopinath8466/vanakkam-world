@@ -1,16 +1,16 @@
 pipeline{
     agent any
     
-    //agent{
-     //   label 'any'
-  //  }
-    //tools{
-   //     maven 'maven123'
-  //  }
-    stages(
+         //agent{
+        //label 'any'
+    //}
+        //tools{
+       // maven 'maven123'
+ //   }
+    stages{
         stage('checkout'){
             steps{
-                git 'https://github.com/saigopinath8466/vanakkam-world'
+                git 'https://github.com/saigopinath8466'
             }
         }
         stage('build'){
@@ -35,5 +35,5 @@ pipeline{
                 }
             }
         }
-    )
+    }
 }
