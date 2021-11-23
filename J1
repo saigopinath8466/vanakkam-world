@@ -10,7 +10,7 @@ pipeline{
     stages(
         stage('checkout'){
             steps{
-                git 'https://github.com/saigopinath8466'
+                git 'https://github.com/saigopinath8466/vanakkam-world'
             }
         }
         stage('build'){
